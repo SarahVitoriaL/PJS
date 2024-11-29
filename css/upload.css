@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #31AA84;
+    color: white;
+    margin: 0;
+}
+
+.principal {
+    display: grid;
+    padding: 10%;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.anotacoes {
+    width: 50%;
+}
+
+textarea {
+    background-color: rgba(255, 255, 255, 0.81);
+    border-radius: 20px;
+    border: none;
+    padding: 25px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+.btn {
+    background-color: black;
+    color: white;
+    width: 150px;
+    height: 50px;
+    font-size: larger;
+    border-radius: 20px;
+}
+
+.fileUpload {
+    background-color: rgba(255, 255, 255, 0.21);
+    width: 200px;
+    height: 200px;
+    border-radius: 10%;
+    padding: 15%;
+}
+
+nav {
+    border: solid 2px;
+    padding: none;
+    background-color: rgba(255, 255, 255, 0.81);
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+
+ul {
+    display: flex;
+    list-style-type: none;
+}
+
+li {
+    margin-left: 110px;
+    margin-right: 110px;
+}
+
+li:hover { 
+    color: lightgreen;  
+    cursor: pointer; 
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    
+}

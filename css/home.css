@@ -1,0 +1,34 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #31AA84;
+    color: white;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #106348;
+}
+
+.principal {
+    padding: 10%;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    
+}
+
+.foto_cruzi {
+    width: 50%;
+}
+
+.links {
+    width: 50%;
+}
+
+img {
+    border-radius: 100%;
+}
