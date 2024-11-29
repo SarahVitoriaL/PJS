@@ -1,29 +1,59 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8"> 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cadastro</title>
-        <link rel="stylesheet" href="/css/registro.css">
-    </head>
-    <body>
-        <section class="principal">
-            <div class="esquerda">
-                <h1>Identificador do Trypanosoma Cruzi</h1>
-                <img src="/images/tcruzi.jpg">
-            </div>
-            <form action="processa.php" method="POST">
-                <h1>Cadastro</h1>
-                <label>Nome</label>
-                <input type="text" class="text" name="nome" required>
-                <label>Cargo</label>
-                <input type="text" class="text" name="cargo" required>
-                <label>Email</label>
-                <input type="email" class="text" name="email" required>
-                <label>Senha</label>
-                <input type="password" class="text" name="senha" required>
-                <input type="submit" class="btn" value="Cadastrar">
-            </form>            
-        </section>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="/css/registro.css">
+</head>
+<body>
+    <section class="principal">
+        <div class="esquerda">
+            <h1>Identificador do Trypanosoma Cruzi</h1>
+            <img src="/imagens/tcruzi.jpg">
+        </div>
+        <form id="formCadastro">
+            <h1>Cadastro</h1>
+            <label>Nome</label>
+            <input type="text" class="text" name="nome" required>
+            <label>Cargo</label>
+            <input type="text" class="text" name="cargo" required>
+            <label>Email</label>
+            <input type="email" class="text" name="email" required>
+            <label>Senha</label>
+            <input type="password" class="text" name="senha" required>
+            <input type="submit" class="btn" value="Cadastrar">
+        </form>
+    </section>
+
+    <script>
+        document.getElementById('formCadastro').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const data = {
+                nome: formData.get('nome'),
+                cargo: formData.get('cargo'),
+                email: formData.get('email'),
+                senha: formData.get('senha')
+            };
+
+            fetch('http://localhost:3000/cadastrar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data); // Exibe o resultado da operação
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao enviar dados');
+            });
+        });
+    </script>
+</body>
 </html>

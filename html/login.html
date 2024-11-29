@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
     <head>
         <meta charset="UTF-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +10,15 @@
         <section class="principal">
             <div class="esquerda">
                 <h1>Identificador do Trypanosoma Cruzi</h1>
-                <img src="/images/tcruzi.jpg">
+                <img src="/imagens/tcruzi.jpg">
             </div>
-            <form>
+            <form action="/login" method="POST">
                 <h1>Login</h1>
                 <label>Email</label>
-                <input type="email" class="text">
+                <input type="email" name="email" class="text" required>
                 <label>Senha</label>
-                <input type="password" class="text">
-                <input type="submit" class="btn">
+                <input type="password" name="senha" class="text" required>
+                <input type="submit" class="btn" value="Login">
             </form>
         </section>
     </body>
