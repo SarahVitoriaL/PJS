@@ -28,6 +28,16 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'html', 'home.html'));
 });
 
+// Rota para servir o arquivo upload_amostra.html
+app.get('/upload_amostra', (req, res) => {
+    res.sendFile(path.join(__dirname, 'html', 'upload_amostra.html'));
+  });
+
+// Rota para servir o arquivo relatorio.html
+app.get('/relatorio', (req, res) => {
+    res.sendFile(path.join(__dirname, 'html', 'relatorio.html'));
+  });
+
 // Rota para servir o arquivo registro.html
 app.get('/registro', (req, res) => {
   res.sendFile(path.join(__dirname, 'html', 'registro.html'));
