@@ -26,11 +26,10 @@ a {
     
 }
 
-
 .principal {
     display: grid;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 100px;
+    padding-right: 100px;
     align-content: center;
     align-items: center;
     justify-content: center;
@@ -40,6 +39,14 @@ a {
     display: flex;
     align-items: center;
     border-bottom: #ffeded solid 1px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.descricao {
+    width: 600px;
+    margin-right: 20px;
+    margin-left: 10px;
 }
 
 img {
