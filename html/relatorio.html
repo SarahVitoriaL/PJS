@@ -1,62 +1,29 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
     <head>
         <meta charset="UTF-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Histórico</title>
-        <link rel="stylesheet" href="/css/historico.css">
+        <title>Relatório</title>
+        <link rel="stylesheet" href="/css/relatorio.css">
     </head>
     <body>
         <header> 
             <nav> 
                 <ul> 
-                    <li><a href="upload_amostra.html">Enviar Amostra</a></li> 
-                    <li><a href="historico.html">Histórico</a></li> 
-                    <li><a href="home.html">Sair</a></li> 
+                    <li><a href="/html/upload_amostra.html">Enviar Amostra</a></li> 
+                    <li><a href="/html/historico.html">Histórico</a></li> 
+                    <li><a href="">Sair</a></li> 
                 </ul> 
             </nav> 
         </header>
-
-        <section id="resultados" class="principal">
-            <h1>Histórico</h1>
+        
+        <section class="principal">
+            <h1>Relatório</h1>
+            <form id="formRelatorio">
+                <textarea name="message" rows="15" cols="35"></textarea><br>
+                <input type="submit" class="btn">
+            </form>
         </section>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-
-                fetch('http://localhost:3000/api/dados')
-                    .then(response => response.json())
-                    .then(data => {
-                        const resultadosDiv = document.getElementById('resultados');
-                        if (data.length > 0) {
-                            data.forEach(item => {
-                                const card = document.createElement('div');
-                                card.classList.add('card');
-                                card.innerHTML = `
-                                    <img src="/imagens/tcruzi.jpg">
-                                    <div class="descricao">
-                                        <h3>Descrição da Imagem</h3>
-                                        <p>${item.descricao || 'Descrição não disponível.'}</p>
-                                    </div>
-                                    <div class="resultado">
-                                        <h3>Resultado</h3>
-                                        <p>${item.detectacaoParasita ? 'Presença de parasitas detectada' : 'Amostra não possui parasitas'}</p>
-                                    </div>
-                                `;
-                                resultadosDiv.appendChild(card);
-                            });
-                        } else {
-                            resultadosDiv.innerHTML = '<p>Amostra não possui dados.</p>';
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Erro ao buscar dados:', error);
-                        const resultadosDiv = document.getElementById('resultados');
-                        resultadosDiv.innerHTML = '<p>Erro ao carregar dados.</p>';
-                    });
-            });
-        </script>
 
     </body>
 </html>
-
