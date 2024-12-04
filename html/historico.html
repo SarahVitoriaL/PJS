@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
     <head>
         <meta charset="UTF-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,67 +17,46 @@
             </nav> 
         </header>
 
-        <section class="principal">
+        <section id="resultados" class="principal">
             <h1>Histórico</h1>
-            <p>08/10/2024</p>
-            <div class="card">
-                <img src="/images/tcruzi.jpg">
-                <div class="descricao">
-                    <h3>Descrição da Imagem</h3>
-                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-                </div>
-                <div class="resultado">
-                    <h3>Resultado</h3>
-                    <p>Amostra não possui o
-                        Trypanosoma Cruzi</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="/images/tcruzi.jpg">
-                <div class="descricao">
-                    <h3>Descrição da Imagem</h3>
-                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-                </div>
-                <div class="resultado">
-                    <h3>Resultado</h3>
-                    <p>Amostra não possui o
-                        Trypanosoma Cruzi</p>
-                </div>
-            </div>
-
-            <p>08/10/2024</p>
-            <div class="card">
-                <img src="/images/tcruzi.jpg">
-                <div class="descricao">
-                    <h3>Descrição da Imagem</h3>
-                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-                </div>
-                <div class="resultado">
-                    <h3>Resultado</h3>
-                    <p>Amostra não possui o
-                        Trypanosoma Cruzi</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="/images/tcruzi.jpg">
-                <div class="descricao">
-                    <h3>Descrição da Imagem</h3>
-                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-                </div>
-                <div class="resultado">
-                    <h3>Resultado</h3>
-                    <p>Amostra não possui o
-                        Trypanosoma Cruzi</p>
-                </div>
-            </div>
         </section>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+
+                fetch('http://localhost:3000/api/dados')
+                    .then(response => response.json())
+                    .then(data => {
+                        const resultadosDiv = document.getElementById('resultados');
+                        if (data.length > 0) {
+                            data.forEach(item => {
+                                const card = document.createElement('div');
+                                card.classList.add('card');
+                                card.innerHTML = `
+                                    <img src="/imagens/tcruzi.jpg">
+                                    <div class="descricao">
+                                        <h3>Descrição da Imagem</h3>
+                                        <p>${item.descricao || 'Descrição não disponível.'}</p>
+                                    </div>
+                                    <div class="resultado">
+                                        <h3>Resultado</h3>
+                                        <p>${item.detectacaoParasita ? 'Presença de parasitas detectada' : 'Amostra não possui parasitas'}</p>
+                                    </div>
+                                `;
+                                resultadosDiv.appendChild(card);
+                            });
+                        } else {
+                            resultadosDiv.innerHTML = '<p>Amostra não possui dados.</p>';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro ao buscar dados:', error);
+                        const resultadosDiv = document.getElementById('resultados');
+                        resultadosDiv.innerHTML = '<p>Erro ao carregar dados.</p>';
+                    });
+            });
+        </script>
+
     </body>
 </html>
+
