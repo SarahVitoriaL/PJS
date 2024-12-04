@@ -89,6 +89,19 @@ app.post('/login', (req, res) => {
   });
 });
 
+// Rota para carregar o histórico
+app.get('/api/dados', (req, res) => {
+    const query = 'SELECT * FROM resultado';
+    
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Erro ao buscar dados: ', err);
+            return res.status(500).json({ error: 'Erro ao buscar dados' });
+        }
+        res.json(results);  
+    });
+});
+
 // Iniciando o servidor
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
